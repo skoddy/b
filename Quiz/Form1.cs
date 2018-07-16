@@ -48,8 +48,8 @@ namespace Quiz
 
         private void btnGameStart_Click(object sender, System.EventArgs e)
         {
-            // Überprüfung ob und welcher Radio Button gewählt wurde mit LinQ Funktion
-            // FirstOrDefault.
+            // Überprüfung ob und welcher RadioButton gewählt wurde.
+
             var gameCategory = grpGameMode.Controls.OfType<RadioButton>()
                                       .FirstOrDefault(r => r.Checked);
             if (gameCategory != null)
@@ -62,6 +62,11 @@ namespace Quiz
             {
                 MessageBox.Show("Bitte wählen Sie zuerst eine Kategorie.");
             }
+        }
+
+        private void btnCancel_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

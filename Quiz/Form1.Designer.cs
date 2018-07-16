@@ -51,6 +51,7 @@
             this.radioAnswerThree = new System.Windows.Forms.RadioButton();
             this.radioAnswerFour = new System.Windows.Forms.RadioButton();
             this.btnNextQuestion = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panLogin.SuspendLayout();
             this.panChooseCategory.SuspendLayout();
             this.grpGameMode.SuspendLayout();
@@ -180,6 +181,7 @@
             // 
             // panGame
             // 
+            this.panGame.Controls.Add(this.btnCancel);
             this.panGame.Controls.Add(this.btnNextQuestion);
             this.panGame.Controls.Add(this.grpAnswers);
             this.panGame.Controls.Add(this.lblCategory);
@@ -294,6 +296,16 @@
             this.btnNextQuestion.Text = "Weiter";
             this.btnNextQuestion.UseVisualStyleBackColor = true;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(57, 386);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "Abbrechen";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,6 +355,7 @@
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblQuestionNumber;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 
