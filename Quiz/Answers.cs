@@ -10,7 +10,10 @@ namespace Quiz
     public class Answers : IPopulateData
     {
         public int Id { get; set; }
+        public string Category_id { get; set; }
         public string Answer { get; set; }
+
+        public Answers() { }
 
         public Answers(int id, string answer)
         {

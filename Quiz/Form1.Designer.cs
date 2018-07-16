@@ -34,29 +34,24 @@
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.panLogin = new System.Windows.Forms.Panel();
             this.panChooseCategory = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.grpGameMode = new System.Windows.Forms.GroupBox();
             this.radioCountry = new System.Windows.Forms.RadioButton();
             this.radioFlag = new System.Windows.Forms.RadioButton();
             this.radioCapital = new System.Windows.Forms.RadioButton();
             this.btnGameStart = new System.Windows.Forms.Button();
-            this.grpGameMode = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panGame = new System.Windows.Forms.Panel();
-            this.lblQuestionNumber = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblQuestion = new System.Windows.Forms.Label();
-            this.lblCategory = new System.Windows.Forms.Label();
-            this.grpAnswers = new System.Windows.Forms.GroupBox();
-            this.radioAnswerOne = new System.Windows.Forms.RadioButton();
-            this.radioAnswerTwo = new System.Windows.Forms.RadioButton();
-            this.radioAnswerThree = new System.Windows.Forms.RadioButton();
-            this.radioAnswerFour = new System.Windows.Forms.RadioButton();
-            this.btnNextQuestion = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnNextQuestion = new System.Windows.Forms.Button();
+            this.grpAnswers = new System.Windows.Forms.GroupBox();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.lblQuestion = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblQuestionNumber = new System.Windows.Forms.Label();
             this.panLogin.SuspendLayout();
             this.panChooseCategory.SuspendLayout();
             this.grpGameMode.SuspendLayout();
             this.panGame.SuspendLayout();
-            this.grpAnswers.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbDisplayName
@@ -115,15 +110,36 @@
             this.panChooseCategory.TabIndex = 9;
             this.panChooseCategory.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(61, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Bitte wählen Sie eine Kategorie.";
+            // 
+            // grpGameMode
+            // 
+            this.grpGameMode.Controls.Add(this.radioCountry);
+            this.grpGameMode.Controls.Add(this.radioFlag);
+            this.grpGameMode.Controls.Add(this.radioCapital);
+            this.grpGameMode.Location = new System.Drawing.Point(64, 124);
+            this.grpGameMode.Name = "grpGameMode";
+            this.grpGameMode.Size = new System.Drawing.Size(200, 100);
+            this.grpGameMode.TabIndex = 5;
+            this.grpGameMode.TabStop = false;
+            this.grpGameMode.Text = "Spiel";
+            // 
             // radioCountry
             // 
             this.radioCountry.AutoSize = true;
             this.radioCountry.Location = new System.Drawing.Point(34, 19);
             this.radioCountry.Name = "radioCountry";
-            this.radioCountry.Size = new System.Drawing.Size(90, 17);
+            this.radioCountry.Size = new System.Drawing.Size(58, 17);
             this.radioCountry.TabIndex = 1;
             this.radioCountry.TabStop = true;
-            this.radioCountry.Text = "Ländernamen";
+            this.radioCountry.Text = "Länder";
             this.radioCountry.UseVisualStyleBackColor = true;
             // 
             // radioFlag
@@ -158,27 +174,6 @@
             this.btnGameStart.UseVisualStyleBackColor = true;
             this.btnGameStart.Click += new System.EventHandler(this.btnGameStart_Click);
             // 
-            // grpGameMode
-            // 
-            this.grpGameMode.Controls.Add(this.radioCountry);
-            this.grpGameMode.Controls.Add(this.radioFlag);
-            this.grpGameMode.Controls.Add(this.radioCapital);
-            this.grpGameMode.Location = new System.Drawing.Point(64, 124);
-            this.grpGameMode.Name = "grpGameMode";
-            this.grpGameMode.Size = new System.Drawing.Size(200, 100);
-            this.grpGameMode.TabIndex = 5;
-            this.grpGameMode.TabStop = false;
-            this.grpGameMode.Text = "Spiel";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 96);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Bitte wählen Sie eine Kategorie.";
-            // 
             // panGame
             // 
             this.panGame.Controls.Add(this.btnCancel);
@@ -194,32 +189,34 @@
             this.panGame.TabIndex = 10;
             this.panGame.Visible = false;
             // 
-            // lblQuestionNumber
+            // btnCancel
             // 
-            this.lblQuestionNumber.AutoSize = true;
-            this.lblQuestionNumber.Location = new System.Drawing.Point(95, 41);
-            this.lblQuestionNumber.Name = "lblQuestionNumber";
-            this.lblQuestionNumber.Size = new System.Drawing.Size(35, 13);
-            this.lblQuestionNumber.TabIndex = 0;
-            this.lblQuestionNumber.Text = "label2";
+            this.btnCancel.Location = new System.Drawing.Point(57, 386);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "Abbrechen";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label2
+            // btnNextQuestion
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(55, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Frage";
+            this.btnNextQuestion.Location = new System.Drawing.Point(254, 386);
+            this.btnNextQuestion.Name = "btnNextQuestion";
+            this.btnNextQuestion.Size = new System.Drawing.Size(75, 23);
+            this.btnNextQuestion.TabIndex = 5;
+            this.btnNextQuestion.Text = "Weiter";
+            this.btnNextQuestion.UseVisualStyleBackColor = true;
+            this.btnNextQuestion.Click += new System.EventHandler(this.btnNextQuestion_Click);
             // 
-            // lblQuestion
+            // grpAnswers
             // 
-            this.lblQuestion.AutoSize = true;
-            this.lblQuestion.Location = new System.Drawing.Point(54, 164);
-            this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(35, 13);
-            this.lblQuestion.TabIndex = 2;
-            this.lblQuestion.Text = "label3";
+            this.grpAnswers.Location = new System.Drawing.Point(70, 221);
+            this.grpAnswers.Name = "grpAnswers";
+            this.grpAnswers.Size = new System.Drawing.Size(265, 136);
+            this.grpAnswers.TabIndex = 4;
+            this.grpAnswers.TabStop = false;
+            this.grpAnswers.Text = "Antworten";
             // 
             // lblCategory
             // 
@@ -230,81 +227,32 @@
             this.lblCategory.TabIndex = 3;
             this.lblCategory.Text = "label3";
             // 
-            // grpAnswers
+            // lblQuestion
             // 
-            this.grpAnswers.Controls.Add(this.radioAnswerFour);
-            this.grpAnswers.Controls.Add(this.radioAnswerThree);
-            this.grpAnswers.Controls.Add(this.radioAnswerTwo);
-            this.grpAnswers.Controls.Add(this.radioAnswerOne);
-            this.grpAnswers.Location = new System.Drawing.Point(64, 230);
-            this.grpAnswers.Name = "grpAnswers";
-            this.grpAnswers.Size = new System.Drawing.Size(265, 136);
-            this.grpAnswers.TabIndex = 4;
-            this.grpAnswers.TabStop = false;
-            this.grpAnswers.Text = "Antworten";
+            this.lblQuestion.AutoSize = true;
+            this.lblQuestion.Location = new System.Drawing.Point(54, 164);
+            this.lblQuestion.Name = "lblQuestion";
+            this.lblQuestion.Size = new System.Drawing.Size(35, 13);
+            this.lblQuestion.TabIndex = 2;
+            this.lblQuestion.Text = "label3";
             // 
-            // radioAnswerOne
+            // label2
             // 
-            this.radioAnswerOne.AutoSize = true;
-            this.radioAnswerOne.Location = new System.Drawing.Point(19, 20);
-            this.radioAnswerOne.Name = "radioAnswerOne";
-            this.radioAnswerOne.Size = new System.Drawing.Size(85, 17);
-            this.radioAnswerOne.TabIndex = 0;
-            this.radioAnswerOne.TabStop = true;
-            this.radioAnswerOne.Text = "radioButton1";
-            this.radioAnswerOne.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(55, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Frage";
             // 
-            // radioAnswerTwo
+            // lblQuestionNumber
             // 
-            this.radioAnswerTwo.AutoSize = true;
-            this.radioAnswerTwo.Location = new System.Drawing.Point(19, 43);
-            this.radioAnswerTwo.Name = "radioAnswerTwo";
-            this.radioAnswerTwo.Size = new System.Drawing.Size(85, 17);
-            this.radioAnswerTwo.TabIndex = 1;
-            this.radioAnswerTwo.TabStop = true;
-            this.radioAnswerTwo.Text = "radioButton2";
-            this.radioAnswerTwo.UseVisualStyleBackColor = true;
-            // 
-            // radioAnswerThree
-            // 
-            this.radioAnswerThree.AutoSize = true;
-            this.radioAnswerThree.Location = new System.Drawing.Point(19, 66);
-            this.radioAnswerThree.Name = "radioAnswerThree";
-            this.radioAnswerThree.Size = new System.Drawing.Size(85, 17);
-            this.radioAnswerThree.TabIndex = 2;
-            this.radioAnswerThree.TabStop = true;
-            this.radioAnswerThree.Text = "radioButton3";
-            this.radioAnswerThree.UseVisualStyleBackColor = true;
-            // 
-            // radioAnswerFour
-            // 
-            this.radioAnswerFour.AutoSize = true;
-            this.radioAnswerFour.Location = new System.Drawing.Point(19, 89);
-            this.radioAnswerFour.Name = "radioAnswerFour";
-            this.radioAnswerFour.Size = new System.Drawing.Size(85, 17);
-            this.radioAnswerFour.TabIndex = 3;
-            this.radioAnswerFour.TabStop = true;
-            this.radioAnswerFour.Text = "radioButton4";
-            this.radioAnswerFour.UseVisualStyleBackColor = true;
-            // 
-            // btnNextQuestion
-            // 
-            this.btnNextQuestion.Location = new System.Drawing.Point(254, 386);
-            this.btnNextQuestion.Name = "btnNextQuestion";
-            this.btnNextQuestion.Size = new System.Drawing.Size(75, 23);
-            this.btnNextQuestion.TabIndex = 5;
-            this.btnNextQuestion.Text = "Weiter";
-            this.btnNextQuestion.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(57, 386);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 6;
-            this.btnCancel.Text = "Abbrechen";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.lblQuestionNumber.AutoSize = true;
+            this.lblQuestionNumber.Location = new System.Drawing.Point(95, 41);
+            this.lblQuestionNumber.Name = "lblQuestionNumber";
+            this.lblQuestionNumber.Size = new System.Drawing.Size(35, 13);
+            this.lblQuestionNumber.TabIndex = 0;
+            this.lblQuestionNumber.Text = "label2";
             // 
             // Form1
             // 
@@ -324,8 +272,6 @@
             this.grpGameMode.PerformLayout();
             this.panGame.ResumeLayout(false);
             this.panGame.PerformLayout();
-            this.grpAnswers.ResumeLayout(false);
-            this.grpAnswers.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -347,10 +293,6 @@
         private System.Windows.Forms.Panel panGame;
         private System.Windows.Forms.Button btnNextQuestion;
         private System.Windows.Forms.GroupBox grpAnswers;
-        private System.Windows.Forms.RadioButton radioAnswerFour;
-        private System.Windows.Forms.RadioButton radioAnswerThree;
-        private System.Windows.Forms.RadioButton radioAnswerTwo;
-        private System.Windows.Forms.RadioButton radioAnswerOne;
         private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.Label label2;

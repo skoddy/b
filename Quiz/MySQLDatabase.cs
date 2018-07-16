@@ -46,13 +46,14 @@ namespace Quiz
 
         }
 
-        public List<T> CreateListFromTable<T>(string table) where T : IPopulateData, new()
+        public List<T> CreateListFromTable<T>(string table, string opt = "") where T : IPopulateData, new()
         {
             T type;
 
             List<T> list = new List<T>();
 
-            DbDataReader reader = SqlStatement($"SELECT * FROM {table}");
+  
+            DbDataReader reader = SqlStatement($"SELECT * FROM {table} {opt}");
 
             if (reader != null)
             {
@@ -69,11 +70,12 @@ namespace Quiz
             return list;
         }
 
-        public T ReadOne<T>(string q) where T : IPopulateData, new()
+        public T ReadOne<T>(string q, string opt = "") where T : IPopulateData, new()
         {
             T type = new T();
 
-            DbDataReader reader = SqlStatement($"SELECT * FROM {q}");
+            DbDataReader reader = SqlStatement($"SELECT * FROM {q} {opt}");
+
             while (reader.Read())
                 type.PopulateData(reader);
 

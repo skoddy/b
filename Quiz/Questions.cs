@@ -14,6 +14,8 @@ namespace Quiz
         public int Category_id { get; set; }
         public int Answer_id { get; set; }
 
+        public Questions() { }
+
         public Questions(int id, string question, int category_id, int answer_id)
         {
             Id = id;

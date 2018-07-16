@@ -20,7 +20,7 @@ namespace Quiz.Extensions
         {
             bool authed = false;
 
-            User u = db.ReadOne<User>($"user WHERE Display_Name = '{user.Display_Name}'");
+            User u = db.ReadOne<User>($"user", $"WHERE Display_Name = '{user.Display_Name}'");
 
             if (u.Password == user.Password)
             {

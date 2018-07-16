@@ -1,6 +1,9 @@
 ﻿using System.Windows.Forms;
 using Quiz.Extensions;
 using System.Linq;
+using System.Collections.Generic;
+using System;
+using System.Drawing;
 
 namespace Quiz
 {
@@ -10,6 +13,7 @@ namespace Quiz
         User user = new User();
         Game game;
         bool authed = false;
+
         public Form1()
         {
             db = new MySQLDatabase(new DBConfig());
@@ -50,13 +54,12 @@ namespace Quiz
         {
             // Überprüfung ob und welcher RadioButton gewählt wurde.
 
-            var gameCategory = grpGameMode.Controls.OfType<RadioButton>()
+            RadioButton gameCategory = grpGameMode.Controls.OfType<RadioButton>()
                                       .FirstOrDefault(r => r.Checked);
             if (gameCategory != null)
             {
                 panChooseCategory.Visible = false;
-                game = new Game(gameCategory.Text, db);
-                panGame.Visible = true;
+                StartGame(gameCategory.Text);
             }
             else
             {
@@ -64,7 +67,47 @@ namespace Quiz
             }
         }
 
+        private void StartGame(string gameCategory)
+        {
+            grpAnswers.Controls.Clear();
+            panGame.Visible = true;
+
+            game = new Game(gameCategory, db);
+
+            List<Questions> questions = game.getQuestions();
+
+            int radionButtonY = 15;
+            int questionId = 0;
+
+            Questions question = questions[questionId];
+
+            lblQuestion.Text = question.Question;
+            lblQuestionNumber.Text = (questionId + 1).ToString();
+
+            List<Answers> answers = game.GetAnswers(question.Answer_id);
+
+            foreach (Answers answer in answers)
+            {
+                RadioButton rb = new RadioButton
+                {
+                    Name = $"rb{answer.Answer}",
+                    Text = answer.Answer,
+                    Location = new Point(10, radionButtonY)
+                };
+
+                grpAnswers.Controls.Add(rb);
+                radionButtonY += 20;
+            }
+
+        }
+
         private void btnCancel_Click(object sender, System.EventArgs e)
+        {
+            panGame.Visible = false;
+            panChooseCategory.Visible = true;
+        }
+
+        private void btnNextQuestion_Click(object sender, EventArgs e)
         {
 
         }
