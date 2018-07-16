@@ -10,13 +10,20 @@ namespace Quiz
     public partial class Form1 : Form
     {
         MySQLDatabase db;
-        User user = new User();
+        User user;
         Game game;
+        List<Questions> questions;
+        List<Answers> answers;
+        Answers correctAnswer;
         bool authed = false;
+        int questionId = 0;
+        int questionNumber = 1;
+        int score = 0;
 
         public Form1()
         {
             db = new MySQLDatabase(new DBConfig());
+            user = new User();
             InitializeComponent();
         }
 
@@ -53,13 +60,12 @@ namespace Quiz
         private void btnGameStart_Click(object sender, System.EventArgs e)
         {
             // Überprüfung ob und welcher RadioButton gewählt wurde.
-
             RadioButton gameCategory = grpGameMode.Controls.OfType<RadioButton>()
                                       .FirstOrDefault(r => r.Checked);
             if (gameCategory != null)
             {
                 panChooseCategory.Visible = false;
-                StartGame(gameCategory.Text);
+                InitGame(gameCategory.Text);
             }
             else
             {
@@ -67,24 +73,32 @@ namespace Quiz
             }
         }
 
-        private void StartGame(string gameCategory)
+        private void InitGame(string gameCategory)
         {
-            grpAnswers.Controls.Clear();
             panGame.Visible = true;
 
             game = new Game(gameCategory, db);
 
-            List<Questions> questions = game.getQuestions();
+            questions = game.GetQuestions();
+
+            ShowQuestion();
+
+        }
+
+        private void ShowQuestion()
+        {
+            grpAnswers.Controls.Clear();
 
             int radionButtonY = 15;
-            int questionId = 0;
 
             Questions question = questions[questionId];
 
             lblQuestion.Text = question.Question;
-            lblQuestionNumber.Text = (questionId + 1).ToString();
+            lblQuestionNumber.Text = questionNumber.ToString();
 
-            List<Answers> answers = game.GetAnswers(question.Answer_id);
+            answers = game.GetAnswers(question.Answer_id);
+
+            correctAnswer = game.GetCorrectAnswer(question.Answer_id);
 
             foreach (Answers answer in answers)
             {
@@ -98,18 +112,37 @@ namespace Quiz
                 grpAnswers.Controls.Add(rb);
                 radionButtonY += 20;
             }
-
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
             panGame.Visible = false;
             panChooseCategory.Visible = true;
+            questionId = 0;
+            questionNumber = 1;
         }
 
         private void btnNextQuestion_Click(object sender, EventArgs e)
         {
+            questionId++;
+            questionNumber++;
+            ShowQuestion();
+        }
 
+        private void btnAnswer_Click(object sender, EventArgs e)
+        {
+            RadioButton answered = grpAnswers.Controls.OfType<RadioButton>()
+                          .FirstOrDefault(r => r.Checked);
+            if (answered.Text == correctAnswer.Answer)
+            {
+                lblResult.Text = "Richtig!";
+                score += 10;
+                lblScore.Text = score.ToString();
+            }
+            else
+            {
+                lblResult.Text = "Falsch.";
+            }
         }
     }
 }
