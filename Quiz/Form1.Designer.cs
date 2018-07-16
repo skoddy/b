@@ -310,9 +310,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(301, 509);
-            this.Controls.Add(this.panLogin);
             this.Controls.Add(this.panChooseCategory);
             this.Controls.Add(this.panGame);
+            this.Controls.Add(this.panLogin);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quiz";

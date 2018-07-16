@@ -141,16 +141,20 @@ namespace Quiz
         {
             RadioButton answered = grpAnswers.Controls.OfType<RadioButton>()
                           .FirstOrDefault(r => r.Checked);
-            if (answered.Text == correctAnswer.Answer)
+            if (answered != null)
             {
-                lblResult.Text = "Richtig!";
-                score += 10;
-                lblScore.Text = score.ToString();
+                if (answered.Text == correctAnswer.Answer)
+                {
+                    lblResult.Text = "Richtig!";
+                    score += 10;
+                    lblScore.Text = score.ToString();
+                }
+                else
+                {
+                    lblResult.Text = "Falsch.";
+                }
             }
-            else
-            {
-                lblResult.Text = "Falsch.";
-            }
+
         }
     }
 }
