@@ -5,14 +5,21 @@ namespace Quiz
 {
     public class Game
     {
-        public string Category { get; set; } 
+        public string Category { get; set; }
+        public int QuestionId { get; set; }
+        public int QuestionNumber { get; set; }
+        public int Score { get; set; }
 
         private MySQLDatabase _db;
         private Categories _c;
 
+
         public Game(string category, MySQLDatabase db)
         {
             Category = category;
+            QuestionId = 0;
+            QuestionNumber = 1;
+            Score = 0;
             _db = db;
             _c = _db.ReadOne<Categories>("categories", $"WHERE Name = '{Category}'");
         }
@@ -30,7 +37,7 @@ namespace Quiz
             // Die richtige Antwort holen
             Answers correctAnswer = GetCorrectAnswer(answer_id);
 
-            // Die richtige Antwort mit Insert in die Liste der Anworten hinzufügen.
+            // Die richtige Antwort mit Insert in die Liste der Anworten einfügen.
             // list.Add() würde die richtige Antwort immer ans Ende der Liste schreiben
             // und ist somit ungeeignet.
             // Mit zufälligeAntworten.Insert(position, richtige Antwort) kann ich die Antwort an eine bestimmte Position schreiben.

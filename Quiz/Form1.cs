@@ -17,9 +17,7 @@ namespace Quiz
         private Auth auth;
 
         private bool authed = false;
-        private int questionId;
-        private int questionNumber;
-        private int score;
+
 
         public Form1()
         {
@@ -81,9 +79,6 @@ namespace Quiz
         private void InitGame(string gameCategory)
         {
             panGame.Visible = true;
-            score = 0;
-            questionId = 0;
-            questionNumber = 1;
             game = new Game(gameCategory, db);
             questions = game.GetQuestions();
             ShowQuestion();
@@ -95,10 +90,10 @@ namespace Quiz
 
             int radionButtonY = 15;
 
-            Questions question = questions[questionId];
+            Questions question = questions[game.QuestionId];
 
             lblQuestion.Text = question.Question;
-            lblQuestionNumber.Text = questionNumber.ToString();
+            lblQuestionNumber.Text = game.QuestionNumber.ToString();
 
             answers = game.GetAnswers(question.Answer_id);
 
@@ -127,8 +122,8 @@ namespace Quiz
 
         private void btnNextQuestion_Click(object sender, EventArgs e)
         {
-            questionId++;
-            questionNumber++;
+            game.QuestionId++;
+            game.QuestionNumber++;
             ShowQuestion();
         }
 
@@ -141,8 +136,8 @@ namespace Quiz
                 if (answered.Text == correctAnswer.Answer)
                 {
                     lblResult.Text = "Richtig!";
-                    score += 10;
-                    lblScore.Text = score.ToString();
+                    game.Score += 10;
+                    lblScore.Text = game.Score.ToString();
                 }
                 else
                 {
