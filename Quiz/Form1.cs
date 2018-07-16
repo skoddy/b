@@ -16,9 +16,9 @@ namespace Quiz
         List<Answers> answers;
         Answers correctAnswer;
         bool authed = false;
-        int questionId = 0;
-        int questionNumber = 1;
-        int score = 0;
+        int questionId;
+        int questionNumber;
+        int score;
 
         public Form1()
         {
@@ -50,11 +50,18 @@ namespace Quiz
 
         private void btnSignUp_Click(object sender, System.EventArgs e)
         {
-            user.Id = 0;
-            user.Display_Name = tbDisplayName.Text;
-            user.Password = tbPassword.Text;
+            if (tbDisplayName.Text.Length < 3 || tbPassword.Text.Length < 3)
+            {
+                MessageBox.Show("Name und Passwort muss mindestens 3 Zeichen lang sein.");
+            }
+            else
+            {
+                user.Id = 0;
+                user.Display_Name = tbDisplayName.Text;
+                user.Password = tbPassword.Text;
 
-            Auth.CreateUser(user, db);
+                Auth.CreateUser(user, db);
+            }
         }
 
         private void btnGameStart_Click(object sender, System.EventArgs e)
@@ -76,7 +83,9 @@ namespace Quiz
         private void InitGame(string gameCategory)
         {
             panGame.Visible = true;
-
+            score = 0;
+            questionId = 0;
+            questionNumber = 1;
             game = new Game(gameCategory, db);
 
             questions = game.GetQuestions();
@@ -118,8 +127,7 @@ namespace Quiz
         {
             panGame.Visible = false;
             panChooseCategory.Visible = true;
-            questionId = 0;
-            questionNumber = 1;
+            lblScore.Text = "0";
         }
 
         private void btnNextQuestion_Click(object sender, EventArgs e)
