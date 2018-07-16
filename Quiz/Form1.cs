@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using Quiz.Extensions;
 using System.Linq;
 using System.Collections.Generic;
 using System;
@@ -9,32 +8,32 @@ namespace Quiz
 {
     public partial class Form1 : Form
     {
-        MySQLDatabase db;
-        User user;
-        Game game;
-        List<Questions> questions;
-        List<Answers> answers;
-        Answers correctAnswer;
-        bool authed = false;
-        int questionId;
-        int questionNumber;
-        int score;
+        private MySQLDatabase db;
+        private User user;
+        private Game game;
+        private List<Questions> questions;
+        private List<Answers> answers;
+        private Answers correctAnswer;
+        private Auth auth;
+
+        private bool authed = false;
+        private int questionId;
+        private int questionNumber;
+        private int score;
 
         public Form1()
         {
             db = new MySQLDatabase(new DBConfig());
             user = new User();
             InitializeComponent();
+            auth = new Auth(db);
         }
-
-
 
         private void btnSignIn_Click(object sender, System.EventArgs e)
         {
             user.Display_Name = tbDisplayName.Text;
             user.Password = tbPassword.Text;
-
-            authed = Auth.Login(user, db);
+            authed = auth.Login(tbDisplayName.Text, tbPassword.Text);
 
             if (authed)
             {
@@ -59,8 +58,7 @@ namespace Quiz
                 user.Id = 0;
                 user.Display_Name = tbDisplayName.Text;
                 user.Password = tbPassword.Text;
-
-                Auth.CreateUser(user, db);
+                auth.CreateUser(user, db);
             }
         }
 
@@ -87,11 +85,8 @@ namespace Quiz
             questionId = 0;
             questionNumber = 1;
             game = new Game(gameCategory, db);
-
             questions = game.GetQuestions();
-
             ShowQuestion();
-
         }
 
         private void ShowQuestion()

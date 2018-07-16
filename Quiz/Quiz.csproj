@@ -62,9 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answers.cs" />
+    <Compile Include="Auth.cs" />
     <Compile Include="Categories.cs" />
     <Compile Include="DBConfig.cs" />
-    <Compile Include="Extensions\Auth.cs" />
+    <Compile Include="Extensions\Crypt.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
