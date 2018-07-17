@@ -11,7 +11,7 @@ namespace Quiz
         public int Score { get; set; }
 
         private MySQLDatabase _db;
-        private Categories _c;
+        private Category _c;
 
 
         public Game(string category, MySQLDatabase db)
@@ -21,37 +21,25 @@ namespace Quiz
             QuestionNumber = 1;
             Score = 0;
             _db = db;
-            _c = _db.ReadOne<Categories>("categories", $"WHERE Name = '{Category}'");
+            _c = _db.ReadOne<Category>("categories", $"WHERE Text = '{Category}'");
         }
 
-        public List<Questions> GetQuestions()
+        public List<Question> GetQuestions()
         {
-            return _db.CreateListFromTable<Questions>("questions", $"WHERE Category_id = {_c.Id} ORDER BY RAND() LIMIT 10");
+            return _db.CreateListFromTable<Question>("questions", $"WHERE Category_id = {_c.Id} ORDER BY RAND() LIMIT 10");
         }
 
-        public List<Answers> GetAnswers(int answer_id)
+        public List<Answer> GetAnswers(int question_id)
         {
             // Liste mit 3 zufälligen Antworten erstellen und die richtige Antwort ausschliessen.
-            List<Answers> answers = _db.CreateListFromTable<Answers>("answers", $"WHERE Category_id = {_c.Id} AND Id != {answer_id} ORDER BY RAND() LIMIT 3");
-
-            // Die richtige Antwort holen
-            Answers correctAnswer = GetCorrectAnswer(answer_id);
-
-            // Die richtige Antwort mit Insert in die Liste der Anworten einfügen.
-            // list.Add() würde die richtige Antwort immer ans Ende der Liste schreiben
-            // und ist somit ungeeignet.
-            // Mit zufälligeAntworten.Insert(position, richtige Antwort) kann ich die Antwort an eine bestimmte Position schreiben.
-            // Mit gen.Next(0,4) erzeuge ich eine zufällige Zahl zwischen 0 und 3. 
-            // Damit ist die richtige Antwort immer an einer anderen Position.
-            Random gen = new Random();
-            answers.Insert(gen.Next(0, 4), correctAnswer);
+            List<Answer> answers = _db.CreateListFromTable<Answer>("answers", $"WHERE Question_id = {question_id} ORDER BY RAND()");
 
             return answers;
         }
 
-        public Answers GetCorrectAnswer(int answer_id)
+        public Answer GetCorrectAnswer(int id)
         {
-            return _db.ReadOne<Answers>("answers", $"WHERE Category_id = {_c.Id} AND Id = {answer_id}");
+            return _db.ReadOne<Answer>("answers", $"WHERE Question_id = {id} AND State = true");
         }
     }
 }

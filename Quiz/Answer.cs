@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Quiz
+{
+    public class Answer : IPopulateData
+    {
+        public int Id { get; set; }
+        public string Text { get; set; }
+        public bool State { get; set; }
+        public int Question_id { get; set; }
+
+        public Answer() { }
+
+        public Answer(int id, string text, bool state, int question_id)
+        {
+            Id = id;
+            Text = text;
+            State = state;
+            Question_id = question_id;
+        }
+
+        public void PopulateData(DbDataReader dataReader)
+        {
+            Id = dataReader.GetInt32(0);
+            Text = dataReader.GetString(1);
+            State = dataReader.GetBoolean(2);
+            Question_id = dataReader.GetInt32(3);
+        }
+    }
+}

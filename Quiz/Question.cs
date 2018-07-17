@@ -7,32 +7,29 @@ using System.Threading.Tasks;
 
 namespace Quiz
 {
-    public class Questions : IPopulateData
+    public class Question : IPopulateData
     {
         public int Id { get; set; }
-        public string Question { get; set; }
+        public string Text { get; set; }
         public string FileName { get; set; }
         public int Category_id { get; set; }
-        public int Answer_id { get; set; }
 
-        public Questions() { }
+        public Question() { }
 
-        public Questions(int id, string question, string fileName, int category_id, int answer_id)
+        public Question(int id, string text, string fileName, int category_id)
         {
             Id = id;
-            Question = question;
+            Text = text;
             FileName = fileName;
             Category_id = category_id;
-            Answer_id = answer_id;
         }
 
         public void PopulateData(DbDataReader dataReader)
         {
             Id = dataReader.GetInt32(0);
-            Question = dataReader.GetString(1);
+            Text = dataReader.GetString(1);
             FileName = dataReader.GetString(2);
             Category_id = dataReader.GetInt32(3);
-            Answer_id = dataReader.GetInt32(4);
         }
     }
 }

@@ -182,7 +182,7 @@ namespace Quiz
             return command;
         }
 
-        private DbDataReader SqlStatement(string q)
+        public DbDataReader SqlStatement(string q)
         {
             DbCommand cmd = dbConnection.CreateCommand();
             DbDataReader reader = null;

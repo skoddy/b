@@ -33,6 +33,8 @@
             this.btnSignUp = new System.Windows.Forms.Button();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.panLogin = new System.Windows.Forms.Panel();
+            this.btnAdmin = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.panChooseCategory = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.grpGameMode = new System.Windows.Forms.GroupBox();
@@ -46,15 +48,13 @@
             this.lblScore = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.grpQuestion = new System.Windows.Forms.GroupBox();
+            this.pbQuestion = new System.Windows.Forms.PictureBox();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnNextQuestion = new System.Windows.Forms.Button();
             this.grpAnswers = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblQuestionNumber = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pbQuestion = new System.Windows.Forms.PictureBox();
-            this.btnAdmin = new System.Windows.Forms.Button();
             this.panLogin.SuspendLayout();
             this.panChooseCategory.SuspendLayout();
             this.grpGameMode.SuspendLayout();
@@ -111,6 +111,27 @@
             this.panLogin.Name = "panLogin";
             this.panLogin.Size = new System.Drawing.Size(301, 509);
             this.panLogin.TabIndex = 8;
+            // 
+            // btnAdmin
+            // 
+            this.btnAdmin.Location = new System.Drawing.Point(270, 474);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(19, 23);
+            this.btnAdmin.TabIndex = 9;
+            this.btnAdmin.Text = "<";
+            this.btnAdmin.UseVisualStyleBackColor = true;
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(302, 86);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Das Quiz";
             // 
             // panChooseCategory
             // 
@@ -255,6 +276,14 @@
             this.grpQuestion.TabStop = false;
             this.grpQuestion.Text = "Frage";
             // 
+            // pbQuestion
+            // 
+            this.pbQuestion.Location = new System.Drawing.Point(198, 10);
+            this.pbQuestion.Name = "pbQuestion";
+            this.pbQuestion.Size = new System.Drawing.Size(64, 64);
+            this.pbQuestion.TabIndex = 1;
+            this.pbQuestion.TabStop = false;
+            // 
             // lblQuestion
             // 
             this.lblQuestion.AutoSize = true;
@@ -314,43 +343,14 @@
             this.lblQuestionNumber.TabIndex = 0;
             this.lblQuestionNumber.Text = "label2";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(302, 86);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Das Quiz";
-            // 
-            // pbQuestion
-            // 
-            this.pbQuestion.Location = new System.Drawing.Point(198, 10);
-            this.pbQuestion.Name = "pbQuestion";
-            this.pbQuestion.Size = new System.Drawing.Size(64, 64);
-            this.pbQuestion.TabIndex = 1;
-            this.pbQuestion.TabStop = false;
-            // 
-            // btnAdmin
-            // 
-            this.btnAdmin.Location = new System.Drawing.Point(270, 474);
-            this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(19, 23);
-            this.btnAdmin.TabIndex = 9;
-            this.btnAdmin.Text = "<";
-            this.btnAdmin.UseVisualStyleBackColor = true;
-            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(301, 509);
+            this.Controls.Add(this.panGame);
             this.Controls.Add(this.panLogin);
             this.Controls.Add(this.panChooseCategory);
-            this.Controls.Add(this.panGame);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quiz";

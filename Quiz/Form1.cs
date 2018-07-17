@@ -11,9 +11,9 @@ namespace Quiz
         private MySQLDatabase db;
         private User user;
         private Game game;
-        private List<Questions> questions;
-        private List<Answers> answers;
-        private Answers correctAnswer;
+        private List<Question> questions;
+        Question question;
+        private List<Answer> answers;
         private Auth auth;
 
         private bool authed = false;
@@ -95,25 +95,23 @@ namespace Quiz
             lblResult.Text = "";
             int radionButtonY = 15;
 
-            Questions question = questions[game.QuestionId];
+            question = questions[game.QuestionId];
 
-            lblQuestion.Text = question.Question;
+            lblQuestion.Text = question.Text;
             lblQuestionNumber.Text = game.QuestionNumber.ToString();
             if (question.FileName != "")
             {
                 pbQuestion.Visible = true;
                 pbQuestion.ImageLocation = $"files\\flags\\{question.FileName}";
             }
-            answers = game.GetAnswers(question.Answer_id);
+            answers = game.GetAnswers(question.Id);
 
-            correctAnswer = game.GetCorrectAnswer(question.Answer_id);
-
-            foreach (Answers answer in answers)
+            foreach (Answer answer in answers)
             {
                 RadioButton rb = new RadioButton
                 {
-                    Name = $"rb{answer.Answer}",
-                    Text = answer.Answer,
+                    Name = $"rb{answer.Text}",
+                    Text = answer.Text,
                     Location = new Point(10, radionButtonY)
                 };
 
@@ -133,22 +131,19 @@ namespace Quiz
         {
             game.QuestionId++;
             game.QuestionNumber++;
-
-            List<Questions>.Enumerator asdasd = questions.GetEnumerator();
-
-            asdasd.MoveNext();
-
             ShowQuestion();
         }
 
         private void btnAnswer_Click(object sender, EventArgs e)
         {
             RadioButton answered = grpAnswers.Controls.OfType<RadioButton>()
-                          .FirstOrDefault(r => r.Checked);
+                .FirstOrDefault(r => r.Checked);
+
+            Answer correctAnswer = game.GetCorrectAnswer(question.Id);
 
             if (answered != null)
             {
-                if (answered.Text == correctAnswer.Answer)
+                if (answered.Text == correctAnswer.Text)
                 {
                     lblResult.Text = "Richtig!";
                     game.Score += 10;

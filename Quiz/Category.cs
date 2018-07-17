@@ -7,24 +7,23 @@ using System.Threading.Tasks;
 
 namespace Quiz
 {
-    public class Answers : IPopulateData
+    public class Category : IPopulateData
     {
         public int Id { get; set; }
-        public string Category_id { get; set; }
-        public string Answer { get; set; }
+        public string Text { get; set; }
 
-        public Answers() { }
+        public Category() { }
 
-        public Answers(int id, string answer)
+        public Category(int id, string text)
         {
             Id = id;
-            Answer = answer;
+            Text = text;
         }
 
         public void PopulateData(DbDataReader dataReader)
         {
             Id = dataReader.GetInt32(0);
-            Answer = dataReader.GetString(1);
+            Text = dataReader.GetString(1);
         }
     }
 }
