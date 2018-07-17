@@ -23,6 +23,7 @@ create table answers(
 create table questions (
 	Id int primary key auto_increment,
     Question varchar(200),
+	FileName varchar(100),
     Category_id int not null,
     Answer_id int not null,
     foreign key (Category_id) references categories(Id),
@@ -59,16 +60,16 @@ insert into answers value(NULL, 'Paris', 3);
 insert into answers value(NULL, 'Warschau', 3);
 insert into answers value(NULL, 'Rom', 3);
 
-insert into questions value(NULL, 'Zu welchem Land gehört Deutschland.gif', 1, 1);
-insert into questions value(NULL, 'Zu welchem Land gehört England.gif', 1, 2);
-insert into questions value(NULL, 'Zu welchem Land gehört Frankreich.gif', 1, 3);
+insert into questions value(NULL, 'Zu welchem Land gehört Deutschland.gif', 'Germany.png', 1, 1);
+insert into questions value(NULL, 'Zu welchem Land gehört England.gif', 'United-Kingdom.png', 1, 2);
+insert into questions value(NULL, 'Zu welchem Land gehört Frankreich.gif', 'France.png', 1, 3);
 
-insert into questions value(NULL, 'Flagge von Deutschland', 2, 6);
-insert into questions value(NULL, 'Flagge von England', 2, 7);
-insert into questions value(NULL, 'Flagge von Frankreich', 2, 8);
+insert into questions value(NULL, 'Flagge von Deutschland', '', 2, 6);
+insert into questions value(NULL, 'Flagge von England', '', 2, 7);
+insert into questions value(NULL, 'Flagge von Frankreich', '', 2, 8);
 
-insert into questions value(NULL, 'Haupstadt von Deutschland', 3, 11);
-insert into questions value(NULL, 'Haupstadt von England', 3, 12);
-insert into questions value(NULL, 'Haupstadt von Frankreich', 3, 13);
+insert into questions value(NULL, 'Hauptstadt von Deutschland', '', 3, 11);
+insert into questions value(NULL, 'Hauptstadt von England', '', 3, 12);
+insert into questions value(NULL, 'Hauptstadt von Frankreich', '', 3, 13);
 
 
