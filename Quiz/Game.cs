@@ -8,17 +8,19 @@ namespace Quiz
         public string Category { get; set; }
         public int QuestionId { get; set; }
         public int QuestionNumber { get; set; }
+        public int MaxQuestions { get; set; }
         public int Score { get; set; }
 
         private MySQLDatabase _db;
         private Category _c;
 
 
-        public Game(string category, MySQLDatabase db)
+        public Game(string category, MySQLDatabase db, int maxQuestions = 3)
         {
             Category = category;
             QuestionId = 0;
             QuestionNumber = 1;
+            MaxQuestions = maxQuestions;
             Score = 0;
             _db = db;
             _c = _db.ReadOne<Category>("categories", $"WHERE Text = '{Category}'");

@@ -55,6 +55,9 @@
             this.grpAnswers = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblQuestionNumber = new System.Windows.Forms.Label();
+            this.btnResult = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblMaxQuestions = new System.Windows.Forms.Label();
             this.panLogin.SuspendLayout();
             this.panChooseCategory.SuspendLayout();
             this.grpGameMode.SuspendLayout();
@@ -68,14 +71,14 @@
             this.tbDisplayName.Location = new System.Drawing.Point(107, 174);
             this.tbDisplayName.Name = "tbDisplayName";
             this.tbDisplayName.Size = new System.Drawing.Size(100, 20);
-            this.tbDisplayName.TabIndex = 5;
+            this.tbDisplayName.TabIndex = 1;
             // 
             // btnSignIn
             // 
             this.btnSignIn.Location = new System.Drawing.Point(107, 226);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(100, 23);
-            this.btnSignIn.TabIndex = 7;
+            this.btnSignIn.TabIndex = 3;
             this.btnSignIn.Text = "Anmelden";
             this.btnSignIn.UseVisualStyleBackColor = true;
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
@@ -95,7 +98,7 @@
             this.tbPassword.Location = new System.Drawing.Point(107, 200);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(100, 20);
-            this.tbPassword.TabIndex = 6;
+            this.tbPassword.TabIndex = 2;
             this.tbPassword.UseSystemPasswordChar = true;
             // 
             // panLogin
@@ -109,7 +112,7 @@
             this.panLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panLogin.Location = new System.Drawing.Point(0, 0);
             this.panLogin.Name = "panLogin";
-            this.panLogin.Size = new System.Drawing.Size(301, 509);
+            this.panLogin.Size = new System.Drawing.Size(299, 509);
             this.panLogin.TabIndex = 8;
             // 
             // btnAdmin
@@ -141,7 +144,7 @@
             this.panChooseCategory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panChooseCategory.Location = new System.Drawing.Point(0, 0);
             this.panChooseCategory.Name = "panChooseCategory";
-            this.panChooseCategory.Size = new System.Drawing.Size(301, 509);
+            this.panChooseCategory.Size = new System.Drawing.Size(299, 509);
             this.panChooseCategory.TabIndex = 9;
             this.panChooseCategory.Visible = false;
             // 
@@ -211,6 +214,9 @@
             // 
             // panGame
             // 
+            this.panGame.Controls.Add(this.lblMaxQuestions);
+            this.panGame.Controls.Add(this.label5);
+            this.panGame.Controls.Add(this.btnResult);
             this.panGame.Controls.Add(this.btnAnswer);
             this.panGame.Controls.Add(this.lblResult);
             this.panGame.Controls.Add(this.lblScore);
@@ -224,7 +230,7 @@
             this.panGame.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panGame.Location = new System.Drawing.Point(0, 0);
             this.panGame.Name = "panGame";
-            this.panGame.Size = new System.Drawing.Size(301, 509);
+            this.panGame.Size = new System.Drawing.Size(299, 509);
             this.panGame.TabIndex = 10;
             this.panGame.Visible = false;
             // 
@@ -233,7 +239,7 @@
             this.btnAnswer.Location = new System.Drawing.Point(206, 342);
             this.btnAnswer.Name = "btnAnswer";
             this.btnAnswer.Size = new System.Drawing.Size(75, 23);
-            this.btnAnswer.TabIndex = 11;
+            this.btnAnswer.TabIndex = 1;
             this.btnAnswer.Text = "Antworten";
             this.btnAnswer.UseVisualStyleBackColor = true;
             this.btnAnswer.Click += new System.EventHandler(this.btnAnswer_Click);
@@ -250,9 +256,10 @@
             // lblScore
             // 
             this.lblScore.AutoSize = true;
+            this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScore.Location = new System.Drawing.Point(62, 34);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(13, 13);
+            this.lblScore.Size = new System.Drawing.Size(14, 13);
             this.lblScore.TabIndex = 9;
             this.lblScore.Text = "0";
             // 
@@ -300,7 +307,8 @@
             this.btnCancel.Location = new System.Drawing.Point(16, 474);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabStop = false;
             this.btnCancel.Text = "Abbrechen";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -311,7 +319,7 @@
             this.btnNextQuestion.Location = new System.Drawing.Point(206, 474);
             this.btnNextQuestion.Name = "btnNextQuestion";
             this.btnNextQuestion.Size = new System.Drawing.Size(75, 23);
-            this.btnNextQuestion.TabIndex = 5;
+            this.btnNextQuestion.TabIndex = 2;
             this.btnNextQuestion.Text = "Weiter";
             this.btnNextQuestion.UseVisualStyleBackColor = true;
             this.btnNextQuestion.Click += new System.EventHandler(this.btnNextQuestion_Click);
@@ -337,17 +345,48 @@
             // lblQuestionNumber
             // 
             this.lblQuestionNumber.AutoSize = true;
-            this.lblQuestionNumber.Location = new System.Drawing.Point(94, 9);
+            this.lblQuestionNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestionNumber.Location = new System.Drawing.Point(89, 9);
             this.lblQuestionNumber.Name = "lblQuestionNumber";
-            this.lblQuestionNumber.Size = new System.Drawing.Size(35, 13);
+            this.lblQuestionNumber.Size = new System.Drawing.Size(41, 13);
             this.lblQuestionNumber.TabIndex = 0;
             this.lblQuestionNumber.Text = "label2";
+            // 
+            // btnResult
+            // 
+            this.btnResult.Enabled = false;
+            this.btnResult.Location = new System.Drawing.Point(116, 474);
+            this.btnResult.Name = "btnResult";
+            this.btnResult.Size = new System.Drawing.Size(75, 23);
+            this.btnResult.TabIndex = 3;
+            this.btnResult.Text = "Auswertung";
+            this.btnResult.UseVisualStyleBackColor = true;
+            this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(136, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "von";
+            // 
+            // lblMaxQuestions
+            // 
+            this.lblMaxQuestions.AutoSize = true;
+            this.lblMaxQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMaxQuestions.Location = new System.Drawing.Point(167, 9);
+            this.lblMaxQuestions.Name = "lblMaxQuestions";
+            this.lblMaxQuestions.Size = new System.Drawing.Size(41, 13);
+            this.lblMaxQuestions.TabIndex = 14;
+            this.lblMaxQuestions.Text = "label6";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 509);
+            this.ClientSize = new System.Drawing.Size(299, 509);
             this.Controls.Add(this.panGame);
             this.Controls.Add(this.panLogin);
             this.Controls.Add(this.panChooseCategory);
@@ -398,6 +437,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pbQuestion;
         private System.Windows.Forms.Button btnAdmin;
+        private System.Windows.Forms.Button btnResult;
+        private System.Windows.Forms.Label lblMaxQuestions;
+        private System.Windows.Forms.Label label5;
     }
 }
 

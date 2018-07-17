@@ -80,11 +80,14 @@ namespace Quiz
             reader.Read();
             int lastId = reader.GetInt32(0);
             reader.Close();
-            MessageBox.Show(lastId.ToString());
+
             int i = 1;
+
             RadioButton rbCorrectAnswer = grpTextAnswers.Controls.OfType<RadioButton>()
                 .FirstOrDefault(r => r.Checked);
+
             int correctAnswerId = Convert.ToInt32(rbCorrectAnswer.Text);
+
             foreach(TextBox tb in grpTextAnswers.Controls.OfType<TextBox>())
             {
                 if (i == correctAnswerId)
@@ -97,7 +100,9 @@ namespace Quiz
                 }
                 i++;
             }
-            // _db.Create("questions", new Question(0, tbNewQuestion.Text, "", catId));
+
+            fillQuestionsLB();
+            createAnswerGroup();
         }
 
         private void lbQuestions_SelectedIndexChanged(object sender, EventArgs e)

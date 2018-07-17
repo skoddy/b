@@ -15,7 +15,6 @@ namespace Quiz
         Question question;
         private List<Answer> answers;
         private Auth auth;
-
         private bool authed = false;
 
 
@@ -99,6 +98,8 @@ namespace Quiz
 
             lblQuestion.Text = question.Text;
             lblQuestionNumber.Text = game.QuestionNumber.ToString();
+            lblMaxQuestions.Text = game.MaxQuestions.ToString();
+
             if (question.FileName != "")
             {
                 pbQuestion.Visible = true;
@@ -118,6 +119,7 @@ namespace Quiz
                 grpAnswers.Controls.Add(rb);
                 radionButtonY += 20;
             }
+            
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)
@@ -131,6 +133,7 @@ namespace Quiz
         {
             game.QuestionId++;
             game.QuestionNumber++;
+            btnAnswer.Focus();
             ShowQuestion();
         }
 
@@ -146,15 +149,21 @@ namespace Quiz
                 if (answered.Text == correctAnswer.Text)
                 {
                     lblResult.Text = "Richtig!";
+                    lblResult.ForeColor = Color.Green;
                     game.Score += 10;
                     lblScore.Text = game.Score.ToString();
                 }
                 else
                 {
                     lblResult.Text = "Falsch.";
+                    lblResult.ForeColor = Color.Red;
                 }
 
-                btnNextQuestion.Enabled = true;
+                btnNextQuestion.Enabled = game.QuestionNumber < game.MaxQuestions ? true : false;
+                btnNextQuestion.Focus();
+                btnResult.Enabled = game.QuestionNumber == game.MaxQuestions ? true : false;
+                btnResult.Focus();
+                btnCancel.Enabled = game.QuestionNumber == game.MaxQuestions ? false : true;
                 btnAnswer.Enabled = false;
             }
 
@@ -164,6 +173,11 @@ namespace Quiz
         {
             Admin admin = new Admin(db);
             admin.Show();
+        }
+
+        private void btnResult_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
