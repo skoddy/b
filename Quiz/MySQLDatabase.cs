@@ -40,9 +40,12 @@ namespace Quiz
             cmd.ExecuteNonQuery();
         }
 
-        public void Delete()
+        public void Delete(string table, int id)
         {
+            IDbCommand cmd = dbConnection.CreateCommand();
 
+            cmd.CommandText = $"DELETE from {table} WHERE Id={id}";
+            cmd.ExecuteNonQuery();
 
         }
 

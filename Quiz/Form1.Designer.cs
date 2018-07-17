@@ -52,11 +52,15 @@
             this.grpAnswers = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblQuestionNumber = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pbQuestion = new System.Windows.Forms.PictureBox();
+            this.btnAdmin = new System.Windows.Forms.Button();
             this.panLogin.SuspendLayout();
             this.panChooseCategory.SuspendLayout();
             this.grpGameMode.SuspendLayout();
             this.panGame.SuspendLayout();
             this.grpQuestion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbQuestion)).BeginInit();
             this.SuspendLayout();
             // 
             // tbDisplayName
@@ -96,6 +100,8 @@
             // 
             // panLogin
             // 
+            this.panLogin.Controls.Add(this.btnAdmin);
+            this.panLogin.Controls.Add(this.label4);
             this.panLogin.Controls.Add(this.tbDisplayName);
             this.panLogin.Controls.Add(this.tbPassword);
             this.panLogin.Controls.Add(this.btnSignIn);
@@ -240,6 +246,7 @@
             // 
             // grpQuestion
             // 
+            this.grpQuestion.Controls.Add(this.pbQuestion);
             this.grpQuestion.Controls.Add(this.lblQuestion);
             this.grpQuestion.Location = new System.Drawing.Point(15, 73);
             this.grpQuestion.Name = "grpQuestion";
@@ -253,6 +260,7 @@
             this.lblQuestion.AutoSize = true;
             this.lblQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblQuestion.Location = new System.Drawing.Point(3, 16);
+            this.lblQuestion.MaximumSize = new System.Drawing.Size(150, 0);
             this.lblQuestion.Name = "lblQuestion";
             this.lblQuestion.Size = new System.Drawing.Size(35, 13);
             this.lblQuestion.TabIndex = 0;
@@ -306,14 +314,43 @@
             this.lblQuestionNumber.TabIndex = 0;
             this.lblQuestionNumber.Text = "label2";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(302, 86);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Das Quiz";
+            // 
+            // pbQuestion
+            // 
+            this.pbQuestion.Location = new System.Drawing.Point(198, 10);
+            this.pbQuestion.Name = "pbQuestion";
+            this.pbQuestion.Size = new System.Drawing.Size(64, 64);
+            this.pbQuestion.TabIndex = 1;
+            this.pbQuestion.TabStop = false;
+            // 
+            // btnAdmin
+            // 
+            this.btnAdmin.Location = new System.Drawing.Point(270, 474);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(19, 23);
+            this.btnAdmin.TabIndex = 9;
+            this.btnAdmin.Text = "<";
+            this.btnAdmin.UseVisualStyleBackColor = true;
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(301, 509);
-            this.Controls.Add(this.panGame);
             this.Controls.Add(this.panLogin);
             this.Controls.Add(this.panChooseCategory);
+            this.Controls.Add(this.panGame);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quiz";
@@ -327,6 +364,7 @@
             this.panGame.PerformLayout();
             this.grpQuestion.ResumeLayout(false);
             this.grpQuestion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbQuestion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -357,6 +395,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Button btnAnswer;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pbQuestion;
+        private System.Windows.Forms.Button btnAdmin;
     }
 }
 

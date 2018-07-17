@@ -17,11 +17,6 @@ namespace Quiz
         // Parameterloser Kontruktor 
         public User() { }
 
-        /* 
-         * Id ist optional und standardmäßig auf 0
-         * somit wird das auto_increment getriggered
-        */
-
         public User(int id, string display_name, string password)
         {
             Id = id;

@@ -56,7 +56,7 @@ namespace Quiz
                 user.Id = 0;
                 user.Display_Name = tbDisplayName.Text;
                 user.Password = tbPassword.Text;
-                auth.CreateUser(user, db);
+                auth.CreateUser(user);
             }
         }
 
@@ -89,15 +89,21 @@ namespace Quiz
         private void ShowQuestion()
         {
             grpAnswers.Controls.Clear();
+            pbQuestion.Visible = false;
             btnNextQuestion.Enabled = false;
             btnAnswer.Enabled = true;
+            lblResult.Text = "";
             int radionButtonY = 15;
 
             Questions question = questions[game.QuestionId];
 
             lblQuestion.Text = question.Question;
             lblQuestionNumber.Text = game.QuestionNumber.ToString();
-
+            if (question.FileName != "")
+            {
+                pbQuestion.Visible = true;
+                pbQuestion.ImageLocation = $"files\\flags\\{question.FileName}";
+            }
             answers = game.GetAnswers(question.Answer_id);
 
             correctAnswer = game.GetCorrectAnswer(question.Answer_id);
@@ -157,6 +163,12 @@ namespace Quiz
                 btnAnswer.Enabled = false;
             }
 
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            Admin admin = new Admin(db);
+            admin.Show();
         }
     }
 }

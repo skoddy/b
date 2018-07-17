@@ -10,6 +10,6 @@ namespace Quiz
         List<T> CreateListFromTable<T>(string table, string opt) where T : IPopulateData, new();
         T ReadOne<T>(string table, string opt) where T : IPopulateData, new();
         void Update<T>(string table, T obj);
-        void Delete();
+        void Delete(string table, int id);
     }
 }
