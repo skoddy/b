@@ -31,18 +31,30 @@ namespace Quiz
 
         private void btnSignIn_Click(object sender, System.EventArgs e)
         {
+            // Name und Passwort einlesen
             _user.Display_Name = tbDisplayName.Text;
             _user.Password = tbPassword.Text;
+
+            // Eigebene Daten mit Daten aus der Datenbank vergleichen.
+            // Sind die Daten vorhanden gibt _auth.Login() true zurück.
             authed = _auth.Login(tbDisplayName.Text, tbPassword.Text);
 
+            // Wenn Benutzerdaten in der Datenbank gefunden worden sind
             if (authed)
             {
+                // Begrüßung ;)
                 MessageBox.Show("Willkommen!");
+
+                // Login Panel verstecken
                 panLogin.Visible = false;
+
+                // Kategorie Panel anzeigen
                 panChooseCategory.Visible = true;
             }
             else
             {
+                // Sind die Benutzerdaten nicht gefunden worden,
+                // ist entweder der Name oder das Passwort falsch.
                 MessageBox.Show("Name oder Passwort falsch!");
             }
         }
@@ -55,21 +67,29 @@ namespace Quiz
             }
             else
             {
+                // Wenn die eingegebenen Daten eine mindestlänge von 3 Zeichen haben,
+                // werden diese in der class User() gespeichert
                 _user.Id = 0;
                 _user.Display_Name = tbDisplayName.Text;
                 _user.Password = tbPassword.Text;
+
+                // und ein neuer Benutzer erstellt.
                 _user.Create();
             }
         }
 
         private void btnGameStart_Click(object sender, System.EventArgs e)
         {
-            // Überprüfung ob und welcher RadioButton gewählt wurde.
+            // Überprüfung ob und welche Kategorie gewählt wurde.
             RadioButton gameCategory = grpGameMode.Controls.OfType<RadioButton>()
-                                      .FirstOrDefault(r => r.Checked);
+                .FirstOrDefault(r => r.Checked);
+
             if (gameCategory != null)
             {
+                // Kategorie Panel verbergen
                 panChooseCategory.Visible = false;
+
+                // Spiel mit gewählter Kategorie initialisieren
                 InitGame(gameCategory.Text);
             }
             else
@@ -80,11 +100,16 @@ namespace Quiz
 
         private void InitGame(string gameCategory)
         {
+            // Spiel Panel anzeigen
             panGame.Visible = true;
             
+            // Spiel mit gewählter Kategorie und initialisierter Datenbank starten
             _game = new Game(gameCategory, _db);
+
+            // Fragen holen
             listQuestions = _game.GetQuestions();
 
+            // Fragen anzeigen
             ShowQuestion();
         }
 
