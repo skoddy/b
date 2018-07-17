@@ -66,7 +66,6 @@ namespace Quiz
         {
             fillQuestionsLB();
             createAnswerGroup();
-
         }
 
         private void btnSaveNewQuestion_Click(object sender, EventArgs e)
@@ -109,8 +108,8 @@ namespace Quiz
         {
             int questionIndex = lbQuestions.SelectedIndex;
             int questionId = listQuestions[questionIndex].Id;
+
             tbNewQuestion.Text = listQuestions[questionIndex].Text;
-            int index = lbQuestions.SelectedIndex;
             listAnswers = _db.CreateListFromTable<Answer>("answers", $"WHERE Question_id = {questionId}");
 
             grpTextAnswers.Controls.Clear();

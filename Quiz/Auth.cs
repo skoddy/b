@@ -11,13 +11,6 @@ namespace Quiz
             _db = db;
         }
 
-        public void CreateUser(User user)
-        {
-            user.Password = user.Password.CryptString();
-            
-            _db.Create("user", user);
-        }
-
         public bool Login(string display_name, string password)
         {
             bool authed = false;

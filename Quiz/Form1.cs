@@ -8,29 +8,32 @@ namespace Quiz
 {
     public partial class Form1 : Form
     {
-        private MySQLDatabase db;
-        private User user;
-        private Game game;
-        private List<Question> questions;
-        Question question;
-        private List<Answer> answers;
-        private Auth auth;
-        private bool authed = false;
+        private MySQLDatabase _db;
 
+        private User _user;
+        private Game _game;
+        private Auth _auth;
+
+        private List<Question> listQuestions;
+        private List<Answer> listAnswers;
+
+        private Question question;
+
+        private bool authed = false;
 
         public Form1()
         {
-            db = new MySQLDatabase(new DBConfig());
-            user = new User();
+            _db = new MySQLDatabase(new DBConfig());
+            _user = new User(_db);
+            _auth = new Auth(_db);
             InitializeComponent();
-            auth = new Auth(db);
         }
 
         private void btnSignIn_Click(object sender, System.EventArgs e)
         {
-            user.Display_Name = tbDisplayName.Text;
-            user.Password = tbPassword.Text;
-            authed = auth.Login(tbDisplayName.Text, tbPassword.Text);
+            _user.Display_Name = tbDisplayName.Text;
+            _user.Password = tbPassword.Text;
+            authed = _auth.Login(tbDisplayName.Text, tbPassword.Text);
 
             if (authed)
             {
@@ -52,10 +55,10 @@ namespace Quiz
             }
             else
             {
-                user.Id = 0;
-                user.Display_Name = tbDisplayName.Text;
-                user.Password = tbPassword.Text;
-                auth.CreateUser(user);
+                _user.Id = 0;
+                _user.Display_Name = tbDisplayName.Text;
+                _user.Password = tbPassword.Text;
+                _user.Create();
             }
         }
 
@@ -79,8 +82,8 @@ namespace Quiz
         {
             panGame.Visible = true;
             
-            game = new Game(gameCategory, db);
-            questions = game.GetQuestions();
+            _game = new Game(gameCategory, _db);
+            listQuestions = _game.GetQuestions();
 
             ShowQuestion();
         }
@@ -94,20 +97,20 @@ namespace Quiz
             lblResult.Text = "";
             int radionButtonY = 15;
 
-            question = questions[game.QuestionId];
+            question = listQuestions[_game.QuestionId];
 
             lblQuestion.Text = question.Text;
-            lblQuestionNumber.Text = game.QuestionNumber.ToString();
-            lblMaxQuestions.Text = game.MaxQuestions.ToString();
+            lblQuestionNumber.Text = _game.QuestionNumber.ToString();
+            lblMaxQuestions.Text = _game.MaxQuestions.ToString();
 
             if (question.FileName != "")
             {
                 pbQuestion.Visible = true;
                 pbQuestion.ImageLocation = $"files\\flags\\{question.FileName}";
             }
-            answers = game.GetAnswers(question.Id);
+            listAnswers = _game.GetAnswers(question.Id);
 
-            foreach (Answer answer in answers)
+            foreach (Answer answer in listAnswers)
             {
                 RadioButton rb = new RadioButton
                 {
@@ -131,8 +134,8 @@ namespace Quiz
 
         private void btnNextQuestion_Click(object sender, EventArgs e)
         {
-            game.QuestionId++;
-            game.QuestionNumber++;
+            _game.QuestionId++;
+            _game.QuestionNumber++;
             btnAnswer.Focus();
             ShowQuestion();
         }
@@ -142,7 +145,7 @@ namespace Quiz
             RadioButton answered = grpAnswers.Controls.OfType<RadioButton>()
                 .FirstOrDefault(r => r.Checked);
 
-            Answer correctAnswer = game.GetCorrectAnswer(question.Id);
+            Answer correctAnswer = _game.GetCorrectAnswer(question.Id);
 
             if (answered != null)
             {
@@ -150,8 +153,8 @@ namespace Quiz
                 {
                     lblResult.Text = "Richtig!";
                     lblResult.ForeColor = Color.Green;
-                    game.Score += 10;
-                    lblScore.Text = game.Score.ToString();
+                    _game.Score += 10;
+                    lblScore.Text = _game.Score.ToString();
                 }
                 else
                 {
@@ -159,11 +162,11 @@ namespace Quiz
                     lblResult.ForeColor = Color.Red;
                 }
 
-                btnNextQuestion.Enabled = game.QuestionNumber < game.MaxQuestions ? true : false;
+                btnNextQuestion.Enabled = _game.QuestionNumber < _game.MaxQuestions ? true : false;
                 btnNextQuestion.Focus();
-                btnResult.Enabled = game.QuestionNumber == game.MaxQuestions ? true : false;
+                btnResult.Enabled = _game.QuestionNumber == _game.MaxQuestions ? true : false;
                 btnResult.Focus();
-                btnCancel.Enabled = game.QuestionNumber == game.MaxQuestions ? false : true;
+                btnCancel.Enabled = _game.QuestionNumber == _game.MaxQuestions ? false : true;
                 btnAnswer.Enabled = false;
             }
 
@@ -171,7 +174,7 @@ namespace Quiz
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            Admin admin = new Admin(db);
+            Admin admin = new Admin(_db);
             admin.Show();
         }
 
