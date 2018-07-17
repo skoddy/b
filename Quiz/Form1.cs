@@ -90,26 +90,49 @@ namespace Quiz
 
         private void ShowQuestion()
         {
+            /* Panel vorbereiten */
+
+            // Alle Elemente aus der GroupBox entfernen
             grpAnswers.Controls.Clear();
-            pbQuestion.Visible = false;
-            btnNextQuestion.Enabled = false;
-            btnAnswer.Enabled = true;
-            lblResult.Text = "";
+
+            // Y Startposition der RadioButtons festlegen
             int radionButtonY = 15;
 
+            // PictureBox verstecken
+            pbQuestion.Visible = false;
+
+            // Buttons aktivieren und deaktivieren
+            btnNextQuestion.Enabled = false;
+            btnAnswer.Enabled = true;
+
+            // Text aus dem Ergebnislabel entfernen
+            lblResult.Text = "";
+
+            /* Panel füllen */
+
+            // Aktuelle Frage holen
             question = listQuestions[_game.QuestionId];
 
+            // Frage anzeigen
             lblQuestion.Text = question.Text;
+
+            // Laufende Fragen Nummer anzeigen
             lblQuestionNumber.Text = _game.QuestionNumber.ToString();
+
+            // Maximale Fragenanzahl anzeigen
             lblMaxQuestions.Text = _game.MaxQuestions.ToString();
 
+            // Überprüfen ob die Frage ein Bild hat und anzeigen
             if (question.FileName != "")
             {
                 pbQuestion.Visible = true;
                 pbQuestion.ImageLocation = $"files\\flags\\{question.FileName}";
             }
+
+            // Antworten zur Frage holen
             listAnswers = _game.GetAnswers(question.Id);
 
+            // GroupBox mit den Anworten füllen
             foreach (Answer answer in listAnswers)
             {
                 RadioButton rb = new RadioButton

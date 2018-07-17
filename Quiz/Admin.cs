@@ -10,9 +10,11 @@ namespace Quiz
     public partial class Admin : Form
     {
         MySQLDatabase _db;
+
         List<Category> listCategories;
         List<Answer> listAnswers;
         List<Question> listQuestions;
+
         public Admin(MySQLDatabase db)
         {
             _db = db;
