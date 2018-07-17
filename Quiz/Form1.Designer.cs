@@ -41,17 +41,17 @@
             this.radioCapital = new System.Windows.Forms.RadioButton();
             this.btnGameStart = new System.Windows.Forms.Button();
             this.panGame = new System.Windows.Forms.Panel();
+            this.btnAnswer = new System.Windows.Forms.Button();
+            this.lblResult = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.grpQuestion = new System.Windows.Forms.GroupBox();
+            this.lblQuestion = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnNextQuestion = new System.Windows.Forms.Button();
             this.grpAnswers = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblQuestionNumber = new System.Windows.Forms.Label();
-            this.grpQuestion = new System.Windows.Forms.GroupBox();
-            this.lblQuestion = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblScore = new System.Windows.Forms.Label();
-            this.lblResult = new System.Windows.Forms.Label();
-            this.btnAnswer = new System.Windows.Forms.Button();
             this.panLogin.SuspendLayout();
             this.panChooseCategory.SuspendLayout();
             this.grpGameMode.SuspendLayout();
@@ -201,6 +201,63 @@
             this.panGame.TabIndex = 10;
             this.panGame.Visible = false;
             // 
+            // btnAnswer
+            // 
+            this.btnAnswer.Location = new System.Drawing.Point(206, 342);
+            this.btnAnswer.Name = "btnAnswer";
+            this.btnAnswer.Size = new System.Drawing.Size(75, 23);
+            this.btnAnswer.TabIndex = 11;
+            this.btnAnswer.Text = "Antworten";
+            this.btnAnswer.UseVisualStyleBackColor = true;
+            this.btnAnswer.Click += new System.EventHandler(this.btnAnswer_Click);
+            // 
+            // lblResult
+            // 
+            this.lblResult.AutoSize = true;
+            this.lblResult.Location = new System.Drawing.Point(16, 424);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(35, 13);
+            this.lblResult.TabIndex = 10;
+            this.lblResult.Text = "label4";
+            // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.Location = new System.Drawing.Point(62, 34);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(13, 13);
+            this.lblScore.TabIndex = 9;
+            this.lblScore.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Punkte:";
+            // 
+            // grpQuestion
+            // 
+            this.grpQuestion.Controls.Add(this.lblQuestion);
+            this.grpQuestion.Location = new System.Drawing.Point(15, 73);
+            this.grpQuestion.Name = "grpQuestion";
+            this.grpQuestion.Size = new System.Drawing.Size(266, 100);
+            this.grpQuestion.TabIndex = 7;
+            this.grpQuestion.TabStop = false;
+            this.grpQuestion.Text = "Frage";
+            // 
+            // lblQuestion
+            // 
+            this.lblQuestion.AutoSize = true;
+            this.lblQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblQuestion.Location = new System.Drawing.Point(3, 16);
+            this.lblQuestion.Name = "lblQuestion";
+            this.lblQuestion.Size = new System.Drawing.Size(35, 13);
+            this.lblQuestion.TabIndex = 0;
+            this.lblQuestion.Text = "label3";
+            // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(16, 474);
@@ -213,6 +270,7 @@
             // 
             // btnNextQuestion
             // 
+            this.btnNextQuestion.Enabled = false;
             this.btnNextQuestion.Location = new System.Drawing.Point(206, 474);
             this.btnNextQuestion.Name = "btnNextQuestion";
             this.btnNextQuestion.Size = new System.Drawing.Size(75, 23);
@@ -248,71 +306,14 @@
             this.lblQuestionNumber.TabIndex = 0;
             this.lblQuestionNumber.Text = "label2";
             // 
-            // grpQuestion
-            // 
-            this.grpQuestion.Controls.Add(this.lblQuestion);
-            this.grpQuestion.Location = new System.Drawing.Point(15, 73);
-            this.grpQuestion.Name = "grpQuestion";
-            this.grpQuestion.Size = new System.Drawing.Size(266, 100);
-            this.grpQuestion.TabIndex = 7;
-            this.grpQuestion.TabStop = false;
-            this.grpQuestion.Text = "Frage";
-            // 
-            // lblQuestion
-            // 
-            this.lblQuestion.AutoSize = true;
-            this.lblQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblQuestion.Location = new System.Drawing.Point(3, 16);
-            this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(35, 13);
-            this.lblQuestion.TabIndex = 0;
-            this.lblQuestion.Text = "label3";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Punkte:";
-            // 
-            // lblScore
-            // 
-            this.lblScore.AutoSize = true;
-            this.lblScore.Location = new System.Drawing.Point(62, 34);
-            this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(13, 13);
-            this.lblScore.TabIndex = 9;
-            this.lblScore.Text = "0";
-            // 
-            // lblResult
-            // 
-            this.lblResult.AutoSize = true;
-            this.lblResult.Location = new System.Drawing.Point(16, 424);
-            this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(35, 13);
-            this.lblResult.TabIndex = 10;
-            this.lblResult.Text = "label4";
-            // 
-            // btnAnswer
-            // 
-            this.btnAnswer.Location = new System.Drawing.Point(206, 342);
-            this.btnAnswer.Name = "btnAnswer";
-            this.btnAnswer.Size = new System.Drawing.Size(75, 23);
-            this.btnAnswer.TabIndex = 11;
-            this.btnAnswer.Text = "Antworten";
-            this.btnAnswer.UseVisualStyleBackColor = true;
-            this.btnAnswer.Click += new System.EventHandler(this.btnAnswer_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(301, 509);
-            this.Controls.Add(this.panChooseCategory);
             this.Controls.Add(this.panGame);
             this.Controls.Add(this.panLogin);
+            this.Controls.Add(this.panChooseCategory);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quiz";

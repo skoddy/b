@@ -79,15 +79,18 @@ namespace Quiz
         private void InitGame(string gameCategory)
         {
             panGame.Visible = true;
+            
             game = new Game(gameCategory, db);
             questions = game.GetQuestions();
+
             ShowQuestion();
         }
 
         private void ShowQuestion()
         {
             grpAnswers.Controls.Clear();
-
+            btnNextQuestion.Enabled = false;
+            btnAnswer.Enabled = true;
             int radionButtonY = 15;
 
             Questions question = questions[game.QuestionId];
@@ -124,6 +127,11 @@ namespace Quiz
         {
             game.QuestionId++;
             game.QuestionNumber++;
+
+            List<Questions>.Enumerator asdasd = questions.GetEnumerator();
+
+            asdasd.MoveNext();
+
             ShowQuestion();
         }
 
@@ -131,6 +139,7 @@ namespace Quiz
         {
             RadioButton answered = grpAnswers.Controls.OfType<RadioButton>()
                           .FirstOrDefault(r => r.Checked);
+
             if (answered != null)
             {
                 if (answered.Text == correctAnswer.Answer)
@@ -143,6 +152,9 @@ namespace Quiz
                 {
                     lblResult.Text = "Falsch.";
                 }
+
+                btnNextQuestion.Enabled = true;
+                btnAnswer.Enabled = false;
             }
 
         }

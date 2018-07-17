@@ -66,7 +66,6 @@ namespace Quiz
                 reader.Close();
             }
 
-
             return list;
         }
 
