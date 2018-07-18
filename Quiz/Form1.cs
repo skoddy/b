@@ -107,7 +107,9 @@ namespace Quiz
             {
                 RadioButton rb = new RadioButton
                 {
-                    Name = $"rb{answer.Text}",
+                    // Die Eigenschaft Name des RadioButtons erhält Antwort ID
+                    // für den späteren Vergleich.
+                    Name = $"rb{answer.Id}",
                     Text = answer.Text,
                     Location = new Point(10, radionButtonY)
                 };
@@ -219,14 +221,14 @@ namespace Quiz
 
         private void btnAnswer_Click(object sender, EventArgs e)
         {
-            RadioButton answered = grpAnswers.Controls.OfType<RadioButton>()
+            RadioButton clickedRadioButton = grpAnswers.Controls.OfType<RadioButton>()
                 .FirstOrDefault(r => r.Checked);
 
             Answer correctAnswer = _game.GetCorrectAnswer(question.Id);
 
-            if (answered != null)
+            if (clickedRadioButton != null)
             {
-                if (answered.Text == correctAnswer.Text)
+                if (clickedRadioButton.Name == "rb" + correctAnswer.Id)
                 {
                     lblResult.Text = "Richtig!";
                     lblResult.ForeColor = Color.Green;
@@ -241,11 +243,13 @@ namespace Quiz
 
                 btnNextQuestion.Enabled = _game.QuestionNumber < _game.MaxQuestions ? true : false;
                 btnNextQuestion.Focus();
+
                 if (_game.QuestionNumber == _game.MaxQuestions)
                 {
                     _db.Create("highscores", new Highscores(0, DateTime.Now, _user.Id, _game.Score));
                     btnHighScores.Focus();
                 }
+
                 btnHighScores.Enabled = _game.QuestionNumber == _game.MaxQuestions ? true : false;
                 btnCancel.Enabled = _game.QuestionNumber == _game.MaxQuestions ? false : true;
                 btnAnswer.Enabled = false;
@@ -322,6 +326,11 @@ namespace Quiz
             {
                 panel.Visible = false;
             }
+        }
+
+        private void btnNewGame_Click(object sender, EventArgs e)
+        {
+            ShowCategories();
         }
     }
 }

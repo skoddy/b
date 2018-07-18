@@ -20,10 +20,16 @@ namespace Quiz
         {
             _db = db;
             InitializeComponent();
-            
+            Init();
             fillCatLB();
         }
        
+        private void Init()
+        {
+            pbQuestionImage.SizeMode = PictureBoxSizeMode.AutoSize;
+            pbQuestionImage.Image = null;
+        }
+
         private void fillCatLB()
         {
             listCategories = _db.CreateListFromTable<Category>("categories");
@@ -62,6 +68,7 @@ namespace Quiz
 
         private void lbCat_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Init();
             fillQuestionsLB();
             createTextAnswerGroup();
         }
@@ -73,8 +80,9 @@ namespace Quiz
             string questionFileName = "";
             if (pbQuestionImage.Tag != null)
             {
-                questionFileName = Path.GetFileName(pbQuestionImage.Tag.ToString());
-                questionFileName = questionFileName != null ? (DateTime.Now.ToString("yyyyMMddhhmm") + questionFileName) : "";
+                string[] str = Path.GetFileName(pbQuestionImage.Tag.ToString()).Split('.');
+                questionFileName = str[1] != "" ? DateTime.Now.ToString("Q-yyyyMMddhhmmss") + "." + str[1] : "";
+                pbQuestionImage.Tag = null;
             }
 
 
@@ -90,28 +98,30 @@ namespace Quiz
             RadioButton rbCorrectAnswer = grpTextAnswers.Controls.OfType<RadioButton>()
                 .FirstOrDefault(r => r.Checked);
 
-            RadioButton rbAnswerType = grpAnswerType.Controls.OfType<RadioButton>()
-                .FirstOrDefault(r => r.Checked);
-
-            List<PictureBox> pbAnswerPicures = 
+            List<PictureBox> pbAnswerPictures = 
                 new List<PictureBox>(grpTextAnswers.Controls.OfType<PictureBox>());
+            List<TextBox> tbAnswerText = 
+                new List<TextBox>(grpTextAnswers.Controls.OfType<TextBox>());
+
             int correctAnswerId = Convert.ToInt32(rbCorrectAnswer.Text);
 
-            foreach(TextBox tb in grpTextAnswers.Controls.OfType<TextBox>())
+            foreach (PictureBox item in pbAnswerPictures)
+            {
+                MessageBox.Show(item.ToString());
+            }
+
+            foreach(RadioButton tb in grpTextAnswers.Controls.OfType<RadioButton>())
             {
                 string anwerFileName = "";
-
-                if (pbAnswerPicures.Count() != 0)
+ 
+                if (pbAnswerPictures?.Any() != false)
                 {
-                    anwerFileName = Path.GetFileName(pbAnswerPicures[i - 1].Tag.ToString());
-                    anwerFileName = anwerFileName != null ? (DateTime.Now.ToString("yyyyMMddhhmm") + anwerFileName) : "";
+                    anwerFileName = Path.GetFileName(pbAnswerPictures[i - 1].Tag.ToString());
+                    anwerFileName = anwerFileName != "" ? DateTime.Now.ToString("A-yyyyMMddhhmmss") : "";
 
                     try
                     {
-                        if (pbQuestionImage.Image != null)
-                        {
-                            pbAnswerPicures[i - 1].Image.Save(@"c:\quiz\" + anwerFileName);
-                        }
+                        pbAnswerPictures[i - 1].Image.Save(@"c:\quiz\" + anwerFileName);
                     }
                     catch (Exception ex)
                     {
@@ -121,13 +131,14 @@ namespace Quiz
                     }
                 }
 
+                string answer = pbAnswerPictures?.Any() != false ?  "" : tbAnswerText[i - 1].Text;
                 if (i == correctAnswerId)
                 {
-                    _db.Create("answers", new Answer(0, tb.Text, true, lastId, anwerFileName));
+                    _db.Create("answers", new Answer(0, answer, true, lastId, anwerFileName));
                 }
                 else
                 {
-                    _db.Create("answers", new Answer(0, tb.Text, false, lastId, anwerFileName));
+                    _db.Create("answers", new Answer(0, answer, false, lastId, anwerFileName));
                 }
 
                 i++;
@@ -146,7 +157,7 @@ namespace Quiz
                 MessageBox.Show(ex.ToString());
             }
 
-            pbQuestionImage.Image = null;
+            Init();
             fillQuestionsLB();
             createTextAnswerGroup();
         }
@@ -155,6 +166,12 @@ namespace Quiz
         {
             int questionIndex = lbQuestions.SelectedIndex;
             int questionId = listQuestions[questionIndex].Id;
+            string questionFileName = listQuestions[questionIndex].FileName;
+
+            if (questionFileName != "")
+            {
+                pbQuestionImage.Load(@"c:\quiz\" + questionFileName);
+            }
 
             tbNewQuestion.Text = listQuestions[questionIndex].Text;
             listAnswers = _db.CreateListFromTable<Answer>("answers", $"WHERE Question_id = {questionId}");
@@ -191,6 +208,7 @@ namespace Quiz
         private void createTextAnswerGroup()
         {
             grpTextAnswers.Controls.Clear();
+            grpTextAnswers.Visible = true;
             tbNewQuestion.Text = "";
             int radionButtonY = 20;
             int number = 1;
@@ -223,6 +241,7 @@ namespace Quiz
         {
             grpTextAnswers.Controls.Clear();
             grpTextAnswers.AutoSize = true;
+            grpTextAnswers.Visible = true;
             tbNewQuestion.Text = "";
             int radionButtonY = 20;
             int number = 1;
@@ -285,12 +304,13 @@ namespace Quiz
             }
         }
 
-        private void rbAnswerTypeText_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
             createTextAnswerGroup();
         }
 
-        private void rbAnswerTypePicture_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             createPictureAnswerGroup();
         }
