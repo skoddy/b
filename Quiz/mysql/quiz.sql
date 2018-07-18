@@ -26,6 +26,7 @@ create table answers(
     Text varchar(100),
     State bool,
     Question_id int,
+	FileName varchar(100),
     foreign key (Question_id) references questions(Id)
 );
 
