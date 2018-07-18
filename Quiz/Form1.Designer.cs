@@ -56,13 +56,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblQuestionNumber = new System.Windows.Forms.Label();
             this.panHighScores = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnNewGame = new System.Windows.Forms.Button();
             this.grpHighscores = new System.Windows.Forms.GroupBox();
             this.lblHSNumber = new System.Windows.Forms.Label();
             this.lblHSName = new System.Windows.Forms.Label();
             this.lblHSScore = new System.Windows.Forms.Label();
             this.lblHSDate = new System.Windows.Forms.Label();
-            this.btnNewGame = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panAuth.SuspendLayout();
             this.panChooseCategory.SuspendLayout();
             this.panGame.SuspendLayout();
@@ -364,6 +364,25 @@
             this.panHighScores.Size = new System.Drawing.Size(318, 509);
             this.panHighScores.TabIndex = 11;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(16, 474);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Abmelden";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnNewGame
+            // 
+            this.btnNewGame.Location = new System.Drawing.Point(214, 474);
+            this.btnNewGame.Name = "btnNewGame";
+            this.btnNewGame.Size = new System.Drawing.Size(75, 23);
+            this.btnNewGame.TabIndex = 6;
+            this.btnNewGame.Text = "Neues Spiel";
+            this.btnNewGame.UseVisualStyleBackColor = true;
+            this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
+            // 
             // grpHighscores
             // 
             this.grpHighscores.Controls.Add(this.lblHSNumber);
@@ -412,25 +431,6 @@
             this.lblHSDate.Size = new System.Drawing.Size(38, 13);
             this.lblHSDate.TabIndex = 2;
             this.lblHSDate.Text = "Datum";
-            // 
-            // btnNewGame
-            // 
-            this.btnNewGame.Location = new System.Drawing.Point(214, 474);
-            this.btnNewGame.Name = "btnNewGame";
-            this.btnNewGame.Size = new System.Drawing.Size(75, 23);
-            this.btnNewGame.TabIndex = 6;
-            this.btnNewGame.Text = "Neues Spiel";
-            this.btnNewGame.UseVisualStyleBackColor = true;
-            this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(16, 474);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Abmelden";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
