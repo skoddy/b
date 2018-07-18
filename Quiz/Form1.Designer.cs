@@ -32,17 +32,17 @@
             this.btnSignIn = new System.Windows.Forms.Button();
             this.btnSignUp = new System.Windows.Forms.Button();
             this.tbPassword = new System.Windows.Forms.TextBox();
-            this.panLogin = new System.Windows.Forms.Panel();
+            this.panAuth = new System.Windows.Forms.Panel();
             this.btnAdmin = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panChooseCategory = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.grpGameMode = new System.Windows.Forms.GroupBox();
-            this.radioCountry = new System.Windows.Forms.RadioButton();
-            this.radioFlag = new System.Windows.Forms.RadioButton();
-            this.radioCapital = new System.Windows.Forms.RadioButton();
+            this.grpChooseCategory = new System.Windows.Forms.GroupBox();
             this.btnGameStart = new System.Windows.Forms.Button();
             this.panGame = new System.Windows.Forms.Panel();
+            this.lblMaxQuestions = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnHighScores = new System.Windows.Forms.Button();
             this.btnAnswer = new System.Windows.Forms.Button();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
@@ -55,15 +55,19 @@
             this.grpAnswers = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblQuestionNumber = new System.Windows.Forms.Label();
-            this.btnResult = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblMaxQuestions = new System.Windows.Forms.Label();
-            this.panLogin.SuspendLayout();
+            this.panHighScores = new System.Windows.Forms.Panel();
+            this.grpHighscores = new System.Windows.Forms.GroupBox();
+            this.lblHSNumber = new System.Windows.Forms.Label();
+            this.lblHSName = new System.Windows.Forms.Label();
+            this.lblHSScore = new System.Windows.Forms.Label();
+            this.lblHSDate = new System.Windows.Forms.Label();
+            this.panAuth.SuspendLayout();
             this.panChooseCategory.SuspendLayout();
-            this.grpGameMode.SuspendLayout();
             this.panGame.SuspendLayout();
             this.grpQuestion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbQuestion)).BeginInit();
+            this.panHighScores.SuspendLayout();
+            this.grpHighscores.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbDisplayName
@@ -101,19 +105,20 @@
             this.tbPassword.TabIndex = 2;
             this.tbPassword.UseSystemPasswordChar = true;
             // 
-            // panLogin
+            // panAuth
             // 
-            this.panLogin.Controls.Add(this.btnAdmin);
-            this.panLogin.Controls.Add(this.label4);
-            this.panLogin.Controls.Add(this.tbDisplayName);
-            this.panLogin.Controls.Add(this.tbPassword);
-            this.panLogin.Controls.Add(this.btnSignIn);
-            this.panLogin.Controls.Add(this.btnSignUp);
-            this.panLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panLogin.Location = new System.Drawing.Point(0, 0);
-            this.panLogin.Name = "panLogin";
-            this.panLogin.Size = new System.Drawing.Size(299, 509);
-            this.panLogin.TabIndex = 8;
+            this.panAuth.Controls.Add(this.btnAdmin);
+            this.panAuth.Controls.Add(this.label4);
+            this.panAuth.Controls.Add(this.tbDisplayName);
+            this.panAuth.Controls.Add(this.tbPassword);
+            this.panAuth.Controls.Add(this.btnSignIn);
+            this.panAuth.Controls.Add(this.btnSignUp);
+            this.panAuth.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panAuth.Location = new System.Drawing.Point(0, 0);
+            this.panAuth.Name = "panAuth";
+            this.panAuth.Size = new System.Drawing.Size(318, 509);
+            this.panAuth.TabIndex = 8;
+            this.panAuth.Visible = false;
             // 
             // btnAdmin
             // 
@@ -139,12 +144,12 @@
             // panChooseCategory
             // 
             this.panChooseCategory.Controls.Add(this.label1);
-            this.panChooseCategory.Controls.Add(this.grpGameMode);
+            this.panChooseCategory.Controls.Add(this.grpChooseCategory);
             this.panChooseCategory.Controls.Add(this.btnGameStart);
             this.panChooseCategory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panChooseCategory.Location = new System.Drawing.Point(0, 0);
             this.panChooseCategory.Name = "panChooseCategory";
-            this.panChooseCategory.Size = new System.Drawing.Size(299, 509);
+            this.panChooseCategory.Size = new System.Drawing.Size(318, 509);
             this.panChooseCategory.TabIndex = 9;
             this.panChooseCategory.Visible = false;
             // 
@@ -157,54 +162,18 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Bitte wählen Sie eine Kategorie.";
             // 
-            // grpGameMode
+            // grpChooseCategory
             // 
-            this.grpGameMode.Controls.Add(this.radioCountry);
-            this.grpGameMode.Controls.Add(this.radioFlag);
-            this.grpGameMode.Controls.Add(this.radioCapital);
-            this.grpGameMode.Location = new System.Drawing.Point(53, 153);
-            this.grpGameMode.Name = "grpGameMode";
-            this.grpGameMode.Size = new System.Drawing.Size(200, 100);
-            this.grpGameMode.TabIndex = 5;
-            this.grpGameMode.TabStop = false;
-            this.grpGameMode.Text = "Spiel";
-            // 
-            // radioCountry
-            // 
-            this.radioCountry.AutoSize = true;
-            this.radioCountry.Location = new System.Drawing.Point(34, 19);
-            this.radioCountry.Name = "radioCountry";
-            this.radioCountry.Size = new System.Drawing.Size(58, 17);
-            this.radioCountry.TabIndex = 1;
-            this.radioCountry.TabStop = true;
-            this.radioCountry.Text = "Länder";
-            this.radioCountry.UseVisualStyleBackColor = true;
-            // 
-            // radioFlag
-            // 
-            this.radioFlag.AutoSize = true;
-            this.radioFlag.Location = new System.Drawing.Point(34, 42);
-            this.radioFlag.Name = "radioFlag";
-            this.radioFlag.Size = new System.Drawing.Size(63, 17);
-            this.radioFlag.TabIndex = 2;
-            this.radioFlag.TabStop = true;
-            this.radioFlag.Text = "Flaggen";
-            this.radioFlag.UseVisualStyleBackColor = true;
-            // 
-            // radioCapital
-            // 
-            this.radioCapital.AutoSize = true;
-            this.radioCapital.Location = new System.Drawing.Point(34, 65);
-            this.radioCapital.Name = "radioCapital";
-            this.radioCapital.Size = new System.Drawing.Size(83, 17);
-            this.radioCapital.TabIndex = 3;
-            this.radioCapital.TabStop = true;
-            this.radioCapital.Text = "Hauptstädte";
-            this.radioCapital.UseVisualStyleBackColor = true;
+            this.grpChooseCategory.Location = new System.Drawing.Point(53, 153);
+            this.grpChooseCategory.Name = "grpChooseCategory";
+            this.grpChooseCategory.Size = new System.Drawing.Size(58, 41);
+            this.grpChooseCategory.TabIndex = 5;
+            this.grpChooseCategory.TabStop = false;
+            this.grpChooseCategory.Text = "Spiel";
             // 
             // btnGameStart
             // 
-            this.btnGameStart.Location = new System.Drawing.Point(163, 273);
+            this.btnGameStart.Location = new System.Drawing.Point(197, 474);
             this.btnGameStart.Name = "btnGameStart";
             this.btnGameStart.Size = new System.Drawing.Size(90, 23);
             this.btnGameStart.TabIndex = 4;
@@ -216,7 +185,7 @@
             // 
             this.panGame.Controls.Add(this.lblMaxQuestions);
             this.panGame.Controls.Add(this.label5);
-            this.panGame.Controls.Add(this.btnResult);
+            this.panGame.Controls.Add(this.btnHighScores);
             this.panGame.Controls.Add(this.btnAnswer);
             this.panGame.Controls.Add(this.lblResult);
             this.panGame.Controls.Add(this.lblScore);
@@ -230,9 +199,39 @@
             this.panGame.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panGame.Location = new System.Drawing.Point(0, 0);
             this.panGame.Name = "panGame";
-            this.panGame.Size = new System.Drawing.Size(299, 509);
+            this.panGame.Size = new System.Drawing.Size(318, 509);
             this.panGame.TabIndex = 10;
             this.panGame.Visible = false;
+            // 
+            // lblMaxQuestions
+            // 
+            this.lblMaxQuestions.AutoSize = true;
+            this.lblMaxQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMaxQuestions.Location = new System.Drawing.Point(167, 9);
+            this.lblMaxQuestions.Name = "lblMaxQuestions";
+            this.lblMaxQuestions.Size = new System.Drawing.Size(41, 13);
+            this.lblMaxQuestions.TabIndex = 14;
+            this.lblMaxQuestions.Text = "label6";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(136, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "von";
+            // 
+            // btnHighScores
+            // 
+            this.btnHighScores.Enabled = false;
+            this.btnHighScores.Location = new System.Drawing.Point(116, 474);
+            this.btnHighScores.Name = "btnHighScores";
+            this.btnHighScores.Size = new System.Drawing.Size(75, 23);
+            this.btnHighScores.TabIndex = 3;
+            this.btnHighScores.Text = "Bestenliste";
+            this.btnHighScores.UseVisualStyleBackColor = true;
+            this.btnHighScores.Click += new System.EventHandler(this.btnHighScores_Click);
             // 
             // btnAnswer
             // 
@@ -352,58 +351,88 @@
             this.lblQuestionNumber.TabIndex = 0;
             this.lblQuestionNumber.Text = "label2";
             // 
-            // btnResult
+            // panHighScores
             // 
-            this.btnResult.Enabled = false;
-            this.btnResult.Location = new System.Drawing.Point(116, 474);
-            this.btnResult.Name = "btnResult";
-            this.btnResult.Size = new System.Drawing.Size(75, 23);
-            this.btnResult.TabIndex = 3;
-            this.btnResult.Text = "Auswertung";
-            this.btnResult.UseVisualStyleBackColor = true;
-            this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
+            this.panHighScores.Controls.Add(this.grpHighscores);
+            this.panHighScores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panHighScores.Location = new System.Drawing.Point(0, 0);
+            this.panHighScores.Name = "panHighScores";
+            this.panHighScores.Size = new System.Drawing.Size(318, 509);
+            this.panHighScores.TabIndex = 11;
             // 
-            // label5
+            // grpHighscores
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(136, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "von";
+            this.grpHighscores.Controls.Add(this.lblHSNumber);
+            this.grpHighscores.Controls.Add(this.lblHSName);
+            this.grpHighscores.Controls.Add(this.lblHSScore);
+            this.grpHighscores.Controls.Add(this.lblHSDate);
+            this.grpHighscores.Location = new System.Drawing.Point(3, 3);
+            this.grpHighscores.Name = "grpHighscores";
+            this.grpHighscores.Size = new System.Drawing.Size(312, 434);
+            this.grpHighscores.TabIndex = 5;
+            this.grpHighscores.TabStop = false;
+            this.grpHighscores.Text = "Bestenliste";
             // 
-            // lblMaxQuestions
+            // lblHSNumber
             // 
-            this.lblMaxQuestions.AutoSize = true;
-            this.lblMaxQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaxQuestions.Location = new System.Drawing.Point(167, 9);
-            this.lblMaxQuestions.Name = "lblMaxQuestions";
-            this.lblMaxQuestions.Size = new System.Drawing.Size(41, 13);
-            this.lblMaxQuestions.TabIndex = 14;
-            this.lblMaxQuestions.Text = "label6";
+            this.lblHSNumber.AutoSize = true;
+            this.lblHSNumber.Location = new System.Drawing.Point(20, 28);
+            this.lblHSNumber.Name = "lblHSNumber";
+            this.lblHSNumber.Size = new System.Drawing.Size(30, 13);
+            this.lblHSNumber.TabIndex = 4;
+            this.lblHSNumber.Text = "Platz";
+            // 
+            // lblHSName
+            // 
+            this.lblHSName.AutoSize = true;
+            this.lblHSName.Location = new System.Drawing.Point(88, 28);
+            this.lblHSName.Name = "lblHSName";
+            this.lblHSName.Size = new System.Drawing.Size(35, 13);
+            this.lblHSName.TabIndex = 1;
+            this.lblHSName.Text = "Name";
+            // 
+            // lblHSScore
+            // 
+            this.lblHSScore.AutoSize = true;
+            this.lblHSScore.Location = new System.Drawing.Point(239, 28);
+            this.lblHSScore.Name = "lblHSScore";
+            this.lblHSScore.Size = new System.Drawing.Size(41, 13);
+            this.lblHSScore.TabIndex = 3;
+            this.lblHSScore.Text = "Punkte";
+            // 
+            // lblHSDate
+            // 
+            this.lblHSDate.AutoSize = true;
+            this.lblHSDate.Location = new System.Drawing.Point(156, 28);
+            this.lblHSDate.Name = "lblHSDate";
+            this.lblHSDate.Size = new System.Drawing.Size(38, 13);
+            this.lblHSDate.TabIndex = 2;
+            this.lblHSDate.Text = "Datum";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 509);
-            this.Controls.Add(this.panGame);
-            this.Controls.Add(this.panLogin);
+            this.ClientSize = new System.Drawing.Size(318, 509);
+            this.Controls.Add(this.panHighScores);
             this.Controls.Add(this.panChooseCategory);
+            this.Controls.Add(this.panGame);
+            this.Controls.Add(this.panAuth);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quiz";
-            this.panLogin.ResumeLayout(false);
-            this.panLogin.PerformLayout();
+            this.panAuth.ResumeLayout(false);
+            this.panAuth.PerformLayout();
             this.panChooseCategory.ResumeLayout(false);
             this.panChooseCategory.PerformLayout();
-            this.grpGameMode.ResumeLayout(false);
-            this.grpGameMode.PerformLayout();
             this.panGame.ResumeLayout(false);
             this.panGame.PerformLayout();
             this.grpQuestion.ResumeLayout(false);
             this.grpQuestion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbQuestion)).EndInit();
+            this.panHighScores.ResumeLayout(false);
+            this.grpHighscores.ResumeLayout(false);
+            this.grpHighscores.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -414,13 +443,10 @@
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.Button btnSignUp;
         private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.Panel panLogin;
+        private System.Windows.Forms.Panel panAuth;
         private System.Windows.Forms.Panel panChooseCategory;
         private System.Windows.Forms.Button btnGameStart;
-        private System.Windows.Forms.RadioButton radioCapital;
-        private System.Windows.Forms.RadioButton radioFlag;
-        private System.Windows.Forms.RadioButton radioCountry;
-        private System.Windows.Forms.GroupBox grpGameMode;
+        private System.Windows.Forms.GroupBox grpChooseCategory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panGame;
         private System.Windows.Forms.Button btnNextQuestion;
@@ -437,9 +463,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pbQuestion;
         private System.Windows.Forms.Button btnAdmin;
-        private System.Windows.Forms.Button btnResult;
+        private System.Windows.Forms.Button btnHighScores;
         private System.Windows.Forms.Label lblMaxQuestions;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panHighScores;
+        private System.Windows.Forms.GroupBox grpHighscores;
+        private System.Windows.Forms.Label lblHSNumber;
+        private System.Windows.Forms.Label lblHSName;
+        private System.Windows.Forms.Label lblHSScore;
+        private System.Windows.Forms.Label lblHSDate;
     }
 }
 

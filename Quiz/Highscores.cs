@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Common;
 
 namespace Quiz
@@ -9,6 +10,15 @@ namespace Quiz
         public DateTime CreatedAt { get; set; }
         public int User_id { get; set; }
         public int Score { get; set; }
+
+        private MySQLDatabase _db;
+
+        public Highscores() { }
+
+        public Highscores(MySQLDatabase db)
+        {
+            _db = db;
+        }
 
         public Highscores(int id, DateTime createdAt, int user_id, int score)
         {
@@ -24,6 +34,11 @@ namespace Quiz
             CreatedAt = dataReader.GetDateTime(1);
             User_id = dataReader.GetInt32(2);
             Score = dataReader.GetInt32(3);
+        }
+
+        public List<Highscores> GetList()
+        {
+            return _db.CreateListFromTable<Highscores>("highscores", $"ORDER BY Score DESC LIMIT 10");
         }
     }
 }

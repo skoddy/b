@@ -35,9 +35,16 @@ namespace Quiz
         public void Create<T>(string table, T obj)
         {
             IDbCommand cmd = dbConnection.CreateCommand();
+            try
+            {
+                cmd.CommandText = GenerateSqlCommandFromObject("INSERT INTO", table, obj);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
 
-            cmd.CommandText = GenerateSqlCommandFromObject("INSERT INTO", table, obj);
-            cmd.ExecuteNonQuery();
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         public void Delete(string table, int id)

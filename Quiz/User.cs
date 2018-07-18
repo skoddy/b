@@ -39,5 +39,26 @@ namespace Quiz
 
             _db.Create("user", this);
         }
+
+        public bool Login(string display_name, string password)
+        {
+            bool authed = false;
+
+            User user = _db.ReadOne<User>($"user", $"WHERE Display_Name = '{display_name}'");
+
+            if (user.Password == password.CryptString())
+            {
+                authed = true;
+                Id = user.Id;
+                Display_Name = user.Display_Name;
+            }
+
+            return authed;
+        }
+
+        public User Get(int id)
+        {
+           return _db.ReadOne<User>($"user", $"WHERE Id = '{id}'");
+        }
     }
 }

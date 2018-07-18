@@ -68,7 +68,6 @@
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Answer.cs" />
-    <Compile Include="Auth.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="DBConfig.cs" />
     <Compile Include="Extensions\Crypt.cs" />
